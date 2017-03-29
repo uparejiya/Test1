@@ -1,0 +1,18 @@
+<project basedir="." default="run" name="CrossBrowser">
+  <property name="src" location="src" />
+  <property name="libs" location="lib" />
+  <path id="class.path">
+	  <fileset dir="${libs}" includes="**/*.jar"/>
+      <pathelement location="./bin" />
+  </path>
+  <target name="compile">
+	  <mkdir dir="test-output"/>
+	  <javac classpathref="class.path" srcdir="${src}" destdir="./bin"/>
+  </target>
+  <target name="run"  depends="compile">
+	  <java classname="SauceLabExample" failonerror="true" fork="yes">
+		  <classpath refid="class.path"/>
+	  </java>
+  </target>
+</project>  
+
